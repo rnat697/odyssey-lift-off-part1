@@ -38,11 +38,12 @@ async function startApolloServer(){
     //     }),
     // });
 
-    // **Lift-Off II**
+    // **Lift-Off II Resolvers**
     const server = new ApolloServer({typeDefs, resolvers});
 
     const { url } = await startStandaloneServer(server,{
         context: async()=>{
+            const { cache } = server;
             // This object becomes our resolver's contextValue, the third positional arguement
             return{
                 dataSources: {

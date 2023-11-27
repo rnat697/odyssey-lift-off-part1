@@ -1,6 +1,6 @@
 const { RESTDataSource } = require("@apollo/datasource-rest");
 
-// using a REST API data source
+// **Lift-Off II Resolvers** using a REST API data source
 class TrackAPI extends RESTDataSource {
     baseURL = "https://odyssey-lift-off-rest-api.herokuapp.com/";
 
@@ -10,6 +10,15 @@ class TrackAPI extends RESTDataSource {
     
     getAuthor(authorId){
         return this.get(`author/${authorId}`);
+    }
+
+    // **Lift-Off III Arguements**, getting a single track 
+    getTrack(trackID){
+        return this.get(`track/${trackID}`);
+    }
+
+    getTrackModules(trackID){
+        return this.get(`track/${trackID}/modules`);
     }
 }
 

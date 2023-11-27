@@ -1,8 +1,7 @@
 import React from 'react';
-import { Layout } from '../components';
+import { Layout, QueryResult } from '../components';
 import { gql, useQuery } from "@apollo/client";
 import TrackCard from "../containers/track-card";
-import QueryResult from '../components/query-result';
 
 /** GraphQL Client Best practices:
 * - Assign each query string to a constant with ALL_CAPS name

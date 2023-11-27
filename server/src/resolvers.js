@@ -1,4 +1,4 @@
-// Populates the data for a single field in the schema. It can fetch data from any data source, then transforms that data into the shape your client requires.
+// **Lift-Off II Resolvers**Populates the data for a single field in the schema. It can fetch data from any data source, then transforms that data into the shape your client requires.
 //As a best practice, when working on your resolvers and data sources, try to keep resolver functions as thin as possible. 
 const resolvers = {
     Query: {
@@ -16,12 +16,19 @@ const resolvers = {
         tracksForHome: (_, __, { dataSources})=>{
             return dataSources.trackAPI.getTracksForHome();
         },
+        // **Lift-Off III Arguements** To get a single track
+        track:(_, {id},{dataSources})=>{
+            return dataSources.trackAPI.getTrack(id);
+        },
     },
 
     Track:{
         author: ({authorId},_, {dataSources}) => {
             return dataSources.trackAPI.getAuthor(authorId);
         },
+        modules: ({id},_,{dataSources})=>{
+            return dataSources.trackAPI.getTrackModules(id);
+        }
     }
 };
 
