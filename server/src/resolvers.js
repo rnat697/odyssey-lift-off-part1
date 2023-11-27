@@ -21,6 +21,28 @@ const resolvers = {
             return dataSources.trackAPI.getTrack(id);
         },
     },
+    Mutation:{
+        incrementTrackViews:async (_,{id},{dataSources})=>{
+            try{
+                // This returns 3 fields that are not present in schema (code, success and message).
+                const track = await dataSources.trackAPI.incrementTrackViews(id);
+                // So we need to wait for the trackAPI call to finish returning the data first.
+                return{
+                    code:200,
+                    success: true,
+                    message: `Successfully incremented number of views for track ${id}`,
+                    track,
+                }
+            }catch(err){
+                return{
+                    code:err.extensions.response.status,
+                    success: false,
+                    message: err.extensions.response.body,
+                    track: null,
+                }
+            }
+        },
+    },
 
     Track:{
         author: ({authorId},_, {dataSources}) => {
